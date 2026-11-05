@@ -1,0 +1,268 @@
+/* =========================================================
+   MADEBYAPO v4 — maquette Figma "01_PORTFOLIO / 03_WEBSITE"
+   --u = 1px de maquette (frame 1440), mis à l'échelle de la largeur réelle.
+   Deux polices seulement : Brunson Rough (logo / titre) + Inter Tight (texte).
+   ========================================================= */
+
+@font-face{
+    font-family: "Brunson Rough";
+    src: url("../fonts/brunson-rough.ttf") format("truetype");
+    font-weight: 400;
+    font-style: normal;
+    font-display: block;
+}
+
+:root{
+    --apo-white: #FFF;
+    --apo-black: #000;
+    --apo-pink: #F56875;
+    --u: calc(100vw / 1440);
+    --gutter: calc(20 * var(--u));
+    --ease-out: cubic-bezier(.22, 1, .36, 1);
+}
+
+*,
+*::before,
+*::after{ box-sizing: border-box; }
+
+html{ -webkit-text-size-adjust: 100%; }
+
+body{
+    margin: 0;
+    min-height: 100vh;
+    background: var(--apo-white);
+    color: var(--apo-black);
+    font-family: "Inter Tight", "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+}
+
+img{ display: block; max-width: 100%; }
+a{ color: inherit; text-decoration: none; }
+
+:focus-visible{
+    outline: 2px solid var(--apo-pink);
+    outline-offset: 3px;
+}
+
+/* ---------- Header fixe ---------- */
+.nav{
+    position: fixed;
+    inset: 0 0 auto;
+    z-index: 20;
+    height: calc(58 * var(--u));
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 calc(33 * var(--u)) 0 var(--gutter);
+    background: var(--apo-white);
+}
+
+.logo{
+    font-family: "Brunson Rough", Impact, sans-serif;
+    font-size: 24px;
+    line-height: 1;
+}
+
+.nav-links{
+    display: flex;
+    align-items: center;
+    gap: calc(20 * var(--u));
+}
+
+.nav-links a{
+    min-width: 98px;
+    padding: 10px 0;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: normal;
+    transition: color .25s ease;
+}
+
+.nav-links a:last-child{ min-width: 73px; margin-left: calc(12 * var(--u)); }
+
+/* Survol = rose de la DA ; la page en cours reste rose */
+.nav-links a:hover,
+.nav-links a[aria-current="page"]{ color: var(--apo-pink); }
+
+/* ---------- MADEBYAPO en bas : fond fixe, le contenu défile par-dessus ---------- */
+.wordmark{
+    position: fixed;
+    left: 50%;
+    bottom: calc(-59 * var(--u)); /* haut des lettres à y=750 comme sur la maquette */
+    z-index: 0;
+    transform: translateX(-50%);
+    margin: 0;
+    font-family: "Brunson Rough", Impact, sans-serif;
+    font-weight: 400;
+    font-size: calc(349 * var(--u));
+    line-height: normal;
+    white-space: nowrap;
+    user-select: none;
+    pointer-events: none;
+    --blur: calc(5.45 * var(--u));
+}
+
+/* Flou progressif repris de la v3 : seul le bas des lettres est flou */
+.soft{
+    position: relative;
+    display: inline-block;
+    line-height: .76;
+    white-space: nowrap;
+}
+
+.soft-fx{
+    position: absolute;
+    inset: -10% -4% -30%;
+    pointer-events: none;
+}
+
+.soft-fx i{
+    position: absolute;
+    inset: 0;
+    -webkit-backdrop-filter: blur(var(--b));
+    backdrop-filter: blur(var(--b));
+    -webkit-mask-image: linear-gradient(to bottom, transparent var(--from), #000 var(--to));
+    mask-image: linear-gradient(to bottom, transparent var(--from), #000 var(--to));
+}
+
+.soft-fx i:nth-child(1){ --b: calc(var(--blur) * .3); --from: 34%; --to: 48%; }
+.soft-fx i:nth-child(2){ --b: calc(var(--blur) * .6); --from: 44%; --to: 58%; }
+.soft-fx i:nth-child(3){ --b: var(--blur);            --from: 54%; --to: 70%; }
+
+/* ---------- Contenu ---------- */
+main{
+    position: relative;
+    z-index: 1;
+    padding: calc(58 * var(--u)) var(--gutter) calc(360 * var(--u));
+}
+
+.home main{ padding-bottom: calc(44 * var(--u)); }
+
+/* ---------- Vignette : survol = zoom + assombri + nom du projet ---------- */
+.tile{
+    position: relative;
+    display: block;
+    overflow: hidden;
+    background: #EEE;
+}
+
+.tile img,
+.tile video{
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 1s var(--ease-out);
+}
+
+.tile::after{
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, .42);
+    opacity: 0;
+    transition: opacity .5s ease;
+}
+
+.tile-title{
+    position: absolute;
+    right: calc(24 * var(--u));
+    bottom: calc(20 * var(--u));
+    left: calc(24 * var(--u));
+    z-index: 1;
+    color: var(--apo-white);
+    font-size: max(18px, calc(24 * var(--u)));
+    font-weight: 600;
+    line-height: normal;
+    text-align: right;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity .45s ease, transform .6s var(--ease-out);
+}
+
+.tile:hover img,
+.tile:focus-visible img,
+.tile:hover video,
+.tile:focus-visible video{ transform: scale(1.06); }
+
+.tile:hover::after,
+.tile:focus-visible::after,
+.tile:hover .tile-title,
+.tile:focus-visible .tile-title{ opacity: 1; }
+
+.tile:hover .tile-title,
+.tile:focus-visible .tile-title{ transform: none; }
+
+/* Écrans tactiles : pas de survol, le nom reste visible */
+@media (hover: none){
+    .tile::after{ opacity: .35; }
+    .tile .tile-title{ opacity: 1; transform: none; }
+}
+
+/* ---------- Accueil : un seul visuel 1400 x 921 ---------- */
+.hero{
+    height: calc(100svh - 58 * var(--u) - 44 * var(--u));
+    min-height: calc(921 * var(--u) * .6);
+}
+
+.hero .tile-title{
+    right: calc(37 * var(--u));
+    bottom: calc(33 * var(--u));
+    font-size: max(20px, calc(32 * var(--u)));
+}
+
+/* ---------- Music video : 2 par 2 ---------- */
+.grid-2{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: calc(16 * var(--u)) var(--gutter);
+}
+
+.grid-2 .tile{ aspect-ratio: 690 / 454; }
+
+/* ---------- Photography / Others : 3 colonnes façon mosaïque ---------- */
+.masonry{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--gutter);
+    align-items: start;
+}
+
+.masonry .col{
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--gap, 16) * var(--u));
+}
+
+.masonry .tile{ aspect-ratio: var(--r); }
+
+/* ---------- Apparition au chargement ---------- */
+.tile{ animation: tile-in .9s var(--ease-out) backwards; animation-delay: calc(.1s + var(--i, 0) * 80ms); }
+@keyframes tile-in{ from{ opacity: 0; transform: translateY(30px); } }
+
+@media (prefers-reduced-motion: reduce){
+    .tile{ animation: none; }
+    .tile img,
+    .tile video{ transition: none; }
+}
+
+/* ---------- Mobile ---------- */
+@media (max-width: 760px){
+    :root{ --gutter: 16px; }
+
+    .nav{ height: auto; padding: 14px 16px; flex-wrap: wrap; gap: 6px; }
+    .nav-links{ gap: 14px; }
+    .nav-links a{ min-width: 0; font-size: 14px; }
+    .nav-links a:last-child{ min-width: 0; margin-left: 0; }
+
+    main{ padding: 92px 16px 40vw; }
+    .home main{ padding-bottom: 24px; }
+    .hero{ height: 70svh; }
+
+    .grid-2{ grid-template-columns: 1fr; gap: 16px; }
+    .masonry{ grid-template-columns: 1fr; gap: 16px; }
+    .masonry .col{ gap: 16px; }
+}
