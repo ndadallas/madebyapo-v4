@@ -125,9 +125,17 @@ a{ color: inherit; text-decoration: none; }
     mask-image: linear-gradient(to bottom, transparent var(--from), #000 var(--to));
 }
 
-.soft-fx i:nth-child(1){ --b: calc(var(--blur) * .3); --from: 34%; --to: 48%; }
-.soft-fx i:nth-child(2){ --b: calc(var(--blur) * .6); --from: 44%; --to: 58%; }
-.soft-fx i:nth-child(3){ --b: var(--blur);            --from: 54%; --to: 70%; }
+/* Figma : LAYER_BLUR PROGRESSIVE, rayon 0 → 10,9 (= 5,45 px CSS) linéaire de y=-12,8 % à y=109,3 % du texte.
+   8 paliers cumulés : les backdrop-filter se composent (σ² s'additionnent), d'où les incréments
+   √(f(k)² − f(k−1)²) avec f(t) = (t + 0,128) / 1,221. Masques en % de .soft-fx (haut à -10 %, hauteur 140 %). */
+.soft-fx i:nth-child(1){ --b: calc(var(--blur) * .0843); --from: 0%;     --to: 10.71%; }
+.soft-fx i:nth-child(2){ --b: calc(var(--blur) * .1892); --from: 10.71%; --to: 21.43%; }
+.soft-fx i:nth-child(3){ --b: calc(var(--blur) * .2568); --from: 21.43%; --to: 32.14%; }
+.soft-fx i:nth-child(4){ --b: calc(var(--blur) * .3100); --from: 32.14%; --to: 42.86%; }
+.soft-fx i:nth-child(5){ --b: calc(var(--blur) * .3553); --from: 42.86%; --to: 53.57%; }
+.soft-fx i:nth-child(6){ --b: calc(var(--blur) * .3957); --from: 53.57%; --to: 64.29%; }
+.soft-fx i:nth-child(7){ --b: calc(var(--blur) * .4320); --from: 64.29%; --to: 75%; }
+.soft-fx i:nth-child(8){ --b: calc(var(--blur) * .4656); --from: 75%;    --to: 85.71%; }
 
 /* ---------- Contenu ---------- */
 main{
