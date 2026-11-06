@@ -284,6 +284,8 @@ main{
     margin-top: calc(60 * var(--u)); /* médias en y=379 */
 }
 .project-main{ aspect-ratio: 689 / 453; }
+.project-main:has(> img)::after{ display: none; } /* page projet photo : ni voile sombre ni zoom au survol */
+.project-main:has(> img) img{ transform: none !important; }
 .project-player{ background: #000; animation: tile-in .9s var(--ease-out) .1s backwards; } /* lecteur Vimeo (son) dans le cadre de la maquette */
 .project-player iframe{ display: block; width: 100%; height: 100%; border: 0; }
 .player-poster{ position: relative; display: block; width: 100%; height: 100%; padding: 0; border: 0; background: none; cursor: pointer; overflow: hidden; }
@@ -301,6 +303,10 @@ main{
     margin-top: calc(18 * var(--u));
 }
 .project-frames img{ width: 100%; aspect-ratio: 335 / 239; object-fit: cover; }
+.project-frames:has(> :nth-child(3):last-child){ grid-template-columns: repeat(3, 1fr); } /* 3 photos = 1 rangée ; 2 ou 4+ = 2 colonnes */
+.project-frames--square img{ aspect-ratio: 1; }
+.project-frames--natural{ display: block; columns: 2; column-gap: calc(20 * var(--u)); } /* photos dans leur format, en quinconce */
+.project-frames--natural img{ display: block; aspect-ratio: auto; height: auto; margin-bottom: calc(20 * var(--u)); break-inside: avoid; }
 .project-info{ display: flex; flex-direction: column; font-size: 16px; line-height: normal; }
 .project-title{ margin: 0; min-height: calc(71 * var(--u)); font-size: max(28px, calc(48 * var(--u))); font-weight: 700; line-height: normal; }
 .project-sub{ margin: 0; min-height: calc(49 * var(--u)); font-size: max(20px, calc(32 * var(--u))); font-weight: 600; }
