@@ -249,6 +249,21 @@ main{
     .tile video{ transition: none; }
 }
 
+/* ---------- Contact : bio centrée (texte en y=314, largeur 602) ---------- */
+.contact .wordmark{ bottom: calc(-173 * var(--u)); } /* plus bas que les autres pages (y=864) */
+.contact main{ padding-top: calc(314 * var(--u)); }
+.bio{
+    max-width: 602px;
+    margin: 0 auto;
+    font-size: 16px;
+    line-height: 1.5;
+    text-align: center;
+}
+.bio p{ margin: 0 0 24px; }
+.bio strong{ font-weight: 600; }
+.bio a{ text-decoration: underline; text-underline-offset: 2px; transition: color .25s ease; }
+.bio a:hover{ color: var(--apo-pink); }
+
 /* ---------- Mobile ---------- */
 @media (max-width: 760px){
     :root{ --gutter: 16px; }
