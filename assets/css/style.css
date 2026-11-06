@@ -286,6 +286,14 @@ main{
 .project-main{ aspect-ratio: 689 / 453; }
 .project-player{ background: #000; animation: tile-in .9s var(--ease-out) .1s backwards; } /* lecteur Vimeo (son) dans le cadre de la maquette */
 .project-player iframe{ display: block; width: 100%; height: 100%; border: 0; }
+.player-poster{ position: relative; display: block; width: 100%; height: 100%; padding: 0; border: 0; background: none; cursor: pointer; overflow: hidden; }
+.player-poster img{ width: 100%; height: 100%; object-fit: cover; transition: transform .6s var(--ease-out); }
+.player-play{ position: absolute; left: 50%; top: 50%; width: max(56px, calc(80 * var(--u))); transform: translate(-50%, -50%); transition: transform .3s var(--ease-out); }
+.player-play circle{ fill: rgba(0,0,0,.35); stroke: #fff; stroke-width: 2; }
+.player-play path{ fill: #fff; }
+.player-poster:hover img{ transform: scale(1.03); }
+.player-poster:hover .player-play, .player-poster:focus-visible .player-play{ transform: translate(-50%, -50%) scale(1.08); }
+.player-poster:hover .player-play circle, .player-poster:focus-visible .player-play circle{ fill: var(--apo-pink); stroke: var(--apo-pink); }
 .project-frames{
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -303,6 +311,8 @@ main{
 .credits-list div{ display: grid; grid-template-columns: calc(257 * var(--u)) 1fr; }
 .credits-list dt{ font-weight: 600; }
 .credits-list dd{ margin: 0; color: var(--apo-pink); }
+.project-link{ grid-column: 2; justify-self: start; margin-top: calc(24 * var(--u)); color: var(--apo-pink); text-decoration: underline; text-underline-offset: 3px; }
+.project-link:hover{ color: #000; }
 .project-year{ margin-top: auto; } /* calé sur le bas des images (y=1089) */
 
 /* ---------- Mobile ---------- */
