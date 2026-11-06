@@ -268,7 +268,7 @@ main{
     :root{ --gutter: 16px; }
 
     .nav{ height: auto; padding: 14px 16px; flex-wrap: wrap; gap: 6px; }
-    .nav-links{ gap: 14px; }
+    .nav-links{ width: 100%; justify-content: space-between; gap: 8px; } /* onglets répartis sur toute la largeur */
     .nav-links a{ font-size: 14px; }
 
     main{ padding: 92px 16px 40vw; }
