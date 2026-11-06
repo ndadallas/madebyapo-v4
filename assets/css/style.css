@@ -25,7 +25,7 @@
 *::before,
 *::after{ box-sizing: border-box; }
 
-html{ -webkit-text-size-adjust: 100%; }
+html{ -webkit-text-size-adjust: 100%; scrollbar-gutter: stable; } /* place de la barre réservée partout : la page ne glisse plus d'une page à l'autre */
 
 body{
     margin: 0;
