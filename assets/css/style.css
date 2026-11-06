@@ -271,6 +271,38 @@ main{
 .bio a{ text-decoration: underline; text-underline-offset: 2px; transition: color .25s ease; }
 .bio a:hover{ color: var(--apo-pink); }
 
+/* ---------- Page projet (05_DETAILS) : MADEBYAPO en haut, média à gauche, infos à droite ---------- */
+.detail main{ padding-bottom: calc(19 * var(--u)); }
+.detail .wordmark{ position: static; transform: none; margin: calc(13 * var(--u)) 0 0; text-align: center; line-height: calc(248 * var(--u)); } /* boîte du texte en y=71, haute de 248 comme Figma */
+.detail .soft{ line-height: inherit; }
+.project{
+    position: relative;
+    z-index: 1; /* au-dessus du flou (backdrop) qui déborde sous le MADEBYAPO */
+    display: grid;
+    grid-template-columns: 689fr 690fr;
+    column-gap: calc(21 * var(--u));
+    margin-top: calc(60 * var(--u)); /* médias en y=379 */
+}
+.project-main{ aspect-ratio: 689 / 453; }
+.project-frames{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: calc(20 * var(--u));
+    margin-top: calc(18 * var(--u));
+}
+.project-frames img{ width: 100%; aspect-ratio: 335 / 239; object-fit: cover; }
+.project-info{ display: flex; flex-direction: column; font-size: 16px; line-height: normal; }
+.project-title{ margin: 0; min-height: calc(71 * var(--u)); font-size: max(28px, calc(48 * var(--u))); font-weight: 700; line-height: normal; }
+.project-sub{ margin: 0; min-height: calc(49 * var(--u)); font-size: max(20px, calc(32 * var(--u))); font-weight: 600; }
+.credits{ display: grid; grid-template-columns: calc(98 * var(--u)) 1fr; margin-top: calc(31 * var(--u)); }
+.credits-label,
+.project-year{ margin: 0; color: #5A5A5A; font-weight: 300; }
+.credits-list{ display: grid; row-gap: calc(12 * var(--u)); margin: 0; }
+.credits-list div{ display: grid; grid-template-columns: calc(257 * var(--u)) 1fr; }
+.credits-list dt{ font-weight: 600; }
+.credits-list dd{ margin: 0; color: var(--apo-pink); }
+.project-year{ margin-top: auto; } /* calé sur le bas des images (y=1089) */
+
 /* ---------- Mobile ---------- */
 @media (max-width: 760px){
     :root{ --gutter: 16px; }
@@ -287,4 +319,15 @@ main{
     .grid-2{ grid-template-columns: 1fr; gap: 16px; }
     .masonry{ grid-template-columns: 1fr; gap: 16px; }
     .masonry .col{ gap: 16px; }
+
+    .detail main{ padding-bottom: 24px; }
+    .project{ grid-template-columns: 1fr; row-gap: 24px; margin-top: 16px; }
+    .project-frames{ gap: 16px; margin-top: 16px; }
+    .project-title,
+    .project-sub{ min-height: 0; }
+    .project-sub{ margin-top: 4px; }
+    .credits{ grid-template-columns: 80px 1fr; margin-top: 20px; font-size: 14px; }
+    .credits-list{ row-gap: 8px; }
+    .credits-list div{ grid-template-columns: 1fr 1fr; gap: 8px; }
+    .project-year{ margin-top: 24px; }
 }
