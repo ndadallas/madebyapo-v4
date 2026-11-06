@@ -55,7 +55,7 @@ a{ color: inherit; text-decoration: none; }
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 calc(33 * var(--u)) 0 var(--gutter);
+    padding: 0 calc(41 * var(--u)) 0 var(--gutter); /* fin de « contact » à x=1399 */
     background: var(--apo-white);
 }
 
@@ -68,20 +68,17 @@ a{ color: inherit; text-decoration: none; }
 .nav-links{
     display: flex;
     align-items: center;
-    gap: calc(20 * var(--u));
+    gap: calc(57 * var(--u)); /* même écart entre tous les onglets, sur la largeur de la maquette (967 → 1399) */
 }
 
 .nav-links a{
-    min-width: 98px;
     padding: 10px 0;
-    text-align: center;
     font-size: 16px;
     font-weight: 600;
     line-height: normal;
     transition: color .25s ease;
 }
 
-.nav-links a:last-child{ min-width: 73px; margin-left: calc(12 * var(--u)); }
 
 /* Survol = rose de la DA ; la page en cours reste rose */
 .nav-links a:hover,
@@ -270,8 +267,7 @@ main{
 
     .nav{ height: auto; padding: 14px 16px; flex-wrap: wrap; gap: 6px; }
     .nav-links{ gap: 14px; }
-    .nav-links a{ min-width: 0; font-size: 14px; }
-    .nav-links a:last-child{ min-width: 0; margin-left: 0; }
+    .nav-links a{ font-size: 14px; }
 
     main{ padding: 92px 16px 40vw; }
     .home main{ padding-bottom: 24px; }
