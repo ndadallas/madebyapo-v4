@@ -248,7 +248,8 @@ main{
 
 /* ---------- Contact : bio centrée (texte en y=314, largeur 602) ---------- */
 .contact .wordmark{ bottom: calc(-173 * var(--u)); } /* plus bas que les autres pages (y=864) */
-.contact main{ padding-top: calc(314 * var(--u)); }
+/* texte centré dans l'écran, pas de scroll (min-height : si l'écran est trop petit, on peut encore scroller) */
+.contact main{ min-height: 100svh; display: flex; align-items: center; justify-content: center; padding-top: 0; padding-bottom: 0; }
 .bio{
     max-width: 602px;
     margin: 0 auto;
@@ -257,6 +258,7 @@ main{
     text-align: center;
 }
 .bio p{ margin: 0 0 24px; }
+.bio p:last-child{ margin-bottom: 0; }
 .bio strong{ font-weight: 600; }
 .bio a{ text-decoration: underline; text-underline-offset: 2px; transition: color .25s ease; }
 .bio a:hover{ color: var(--apo-pink); }
@@ -271,6 +273,7 @@ main{
 
     main{ padding: 92px 16px 40vw; }
     .home main{ padding-bottom: 24px; }
+    .contact main{ padding: 92px 16px 24px; }
     .hero{ height: 70svh; }
 
     .grid-2{ grid-template-columns: 1fr; gap: 16px; }
