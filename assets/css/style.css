@@ -261,9 +261,9 @@ main{
 /* texte centré dans l'écran, pas de scroll (min-height : si l'écran est trop petit, on peut encore scroller) */
 .contact main{ min-height: 100svh; display: flex; align-items: center; justify-content: center; padding-top: 0; padding-bottom: 0; }
 .bio{
-    max-width: 602px;
+    max-width: 680px; /* élargi avec le texte pour garder la même forme de paragraphe */
     margin: 0 auto;
-    font-size: 16px;
+    font-size: 18px;
     line-height: 1.5;
     text-align: center;
 }
